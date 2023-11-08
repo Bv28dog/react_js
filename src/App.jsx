@@ -1,10 +1,8 @@
+import { Resume } from "./components/resume/resume";
 
-import './App.css'
 
 function App() {
-  return (
-    <div>hello</div>
-  )
+  return <Resume />;
 }
 
-export default App
+export default App;
