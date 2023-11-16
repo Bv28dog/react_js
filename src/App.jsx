@@ -1,26 +1,17 @@
-import React, { useState } from "react";
-import { ShowButton } from "./components/button";
-import { InputComponents } from "./components/input";
-import { ListComponent } from "./components/list";
-
+import React, { useState, useEffect } from "react";
+import { Timer } from "./components/timer";
+import { Posts } from "./components/fetch";
+import { Location } from "./components/location";
 import "./App.css";
 
 function App() {
-  const [todos, setTodos] = useState([]);
-
-  const handleAddTodo = (todo) => {
-    setTodos([...todos, todo]);
-  };
+  const [] = useState();
 
   return (
     <>
-      <ShowButton />
-      <br />
-      <br />
-      <div>
-        <InputComponents onAddTodo={handleAddTodo} />
-        <ListComponent todos={todos} />
-      </div>
+      <Timer />
+      <Location />
+      <Posts />
     </>
   );
 }
