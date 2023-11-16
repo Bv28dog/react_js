@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 export const Posts = () => {
-  const [products, setProducts] = useState([]);
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -10,7 +10,7 @@ export const Posts = () => {
         const data = await response.json();
         const postsArray = Object.values(data);
 
-        setProducts(postsArray[0]);
+        setPosts(postsArray[0]);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -21,10 +21,10 @@ export const Posts = () => {
 
   return (
     <div>
-      <h2>Products : </h2>
+      <h2>Posts : </h2>
       <ul>
-        {products.length > 0 ? (
-          products.map((post) => (
+        {posts.length > 0 ? (
+          posts.map((post) => (
             <li key={post.id}>
               <h3>{post.title}</h3>
             </li>
