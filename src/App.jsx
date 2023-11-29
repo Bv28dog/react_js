@@ -14,7 +14,21 @@ const App = () => {
     }
   };
   return (
-    <div>
+    <div style={{ marginLeft: "700px" }}>
+      <div>Selected Color: {selectedColor}</div>
+      <div>
+        {displayColor && (
+          <div
+            style={{
+              width: "100px",
+              height: "100px",
+              backgroundColor: displayColor,
+              marginTop: "20px",
+            }}
+          ></div>
+        )}
+      </div>
+      <br />
       <ColorPiker
         ref={colorPikerRef}
         onChange={(color) => {
@@ -22,17 +36,8 @@ const App = () => {
         }}
       />
       <button onClick={handleShowColor}>Show Color</button>
-      <div>Selected Color: {selectedColor}</div>
-      {displayColor && (
-        <div
-          style={{
-            width: "100px",
-            height: "100px",
-            backgroundColor: displayColor,
-            marginTop: "20px",
-          }}
-        ></div>
-      )}
+      <br />
+      <br />
     </div>
   );
 };
