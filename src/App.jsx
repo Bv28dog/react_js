@@ -14,16 +14,17 @@ const App = () => {
     }
   };
   return (
-    <div style={{ marginLeft: "700px" }}>
+    <div style={{ marginLeft: "600px" }}>
       <div>Selected Color: {selectedColor}</div>
       <div>
         {displayColor && (
           <div
             style={{
-              width: "100px",
-              height: "100px",
+              width: "250px",
+              height: "250px",
               backgroundColor: displayColor,
               marginTop: "20px",
+              borderRadius: "10px",
             }}
           ></div>
         )}
