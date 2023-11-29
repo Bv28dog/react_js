@@ -1,17 +1,39 @@
-import React from "react";
-import Header from "./components/Header";
-import Posts from "./components/Posts";
-
-import { UserProvider } from "./components/UserContext";
+import React, { useRef, useState } from "react";
+import { ColorPiker } from "./components/componentshook/ColorCmp";
 
 const App = () => {
+  const colorPikerRef = useRef(null);
+  const [selectedColor, setSelectedColor] = useState("");
+  const [displayColor, setDisplayColor] = useState("");
+
+  const handleShowColor = () => {
+    if (colorPikerRef.current) {
+      const color = colorPikerRef.current.value;
+      setSelectedColor(color);
+      setDisplayColor(color);
+    }
+  };
   return (
-    <UserProvider>
-      <div className="App">
-        <Header />
-        <Posts />
-      </div>
-    </UserProvider>
+    <div>
+      <ColorPiker
+        ref={colorPikerRef}
+        onChange={(color) => {
+          setSelectedColor(color);
+        }}
+      />
+      <button onClick={handleShowColor}>Show Color</button>
+      <div>Selected Color: {selectedColor}</div>
+      {displayColor && (
+        <div
+          style={{
+            width: "100px",
+            height: "100px",
+            backgroundColor: displayColor,
+            marginTop: "20px",
+          }}
+        ></div>
+      )}
+    </div>
   );
 };
 
