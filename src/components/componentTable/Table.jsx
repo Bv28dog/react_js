@@ -1,23 +1,11 @@
 export const Table = () => {
     const [cellNumber, setCellNumber] = useState(null);
   
-    const handleCellClick = (number) => {
-      setCellNumber(number);
-    };
-  
-    const renderTable = () => {
-      const cells = [];
-      for (let i = 0; i < 4; i++) {
-        for (let j = 0; j < 4; j++) {
-          const number = i * 4 + j + 1;
-          cells.push(
-            <td key={number} onClick={() => handleCellClick(number)}>
-              {number}
-            </td>,
-          );
-        }
+    const handleTableClick = (event) => {
+      if (event.target.tagName === "TD") {
+        const number = parseInt(event.target.textContent, 10);
+        setCellNumber(number);
       }
-      return cells;
     };
   
     return (
@@ -28,10 +16,17 @@ export const Table = () => {
           color: "blue",
           fontSize: "40px",
         }}
+        onClick={handleTableClick}
       >
         <table>
           <tbody>
-            <tr>{renderTable()}</tr>
+            {Array.from({ length: 4 }, (_, i) => (
+              <tr key={i}>
+                {Array.from({ length: 4 }, (_, j) => (
+                  <td key={i * 4 + j + 1}>{i * 4 + j + 1}</td>
+                ))}
+              </tr>
+            ))}
           </tbody>
         </table>
         {cellNumber && (
