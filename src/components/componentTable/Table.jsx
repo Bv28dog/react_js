@@ -1,3 +1,4 @@
+import { useState } from "react";
 export const Table = () => {
     const [cellNumber, setCellNumber] = useState(null);
   
@@ -7,6 +8,18 @@ export const Table = () => {
         setCellNumber(number);
       }
     };
+  
+    const rows = [];
+    for (let i = 0; i < 4; i++) {
+      const cells = [];
+      for (let j = 0; j < 4; j++) {
+        const number = i * 4 + j + 1;
+        cells.push(
+          <td key={number}>{number}</td>
+        );
+      }
+      rows.push(<tr key={i}>{cells}</tr>);
+    }
   
     return (
       <div
@@ -19,15 +32,7 @@ export const Table = () => {
         onClick={handleTableClick}
       >
         <table>
-          <tbody>
-            {Array.from({ length: 4 }, (_, i) => (
-              <tr key={i}>
-                {Array.from({ length: 4 }, (_, j) => (
-                  <td key={i * 4 + j + 1}>{i * 4 + j + 1}</td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
+          <tbody>{rows}</tbody>
         </table>
         {cellNumber && (
           <p style={{ color: "yellow" }}>Номер клітинки: {cellNumber}</p>
